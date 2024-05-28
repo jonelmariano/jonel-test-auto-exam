@@ -1,0 +1,15 @@
+{
+  "name": "jonel-test-auto-exam",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jonel Mariano",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cypress": "^13.10.0"
+  }
+}
