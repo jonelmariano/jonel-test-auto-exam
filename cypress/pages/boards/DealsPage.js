@@ -27,6 +27,19 @@ class DealsPage {
           cancelButton :() => cy.get('input[type="button"]').contains("Cancel"),
           addApplicantButton :() => cy.get('button.ant-btn.brokerEngine.ant-btn-primary').contains("Add Applicant"),
     }
+
+
+    createdDeal = {
+         dealNameTitle : () => cy.get("span._editVal_tnvhe_25").eq(0),
+         brokerTitle: () => cy.get('[data-testid="loanApplicationHeader-brokerName"]'),
+         applicantName: () => cy.get('[data-testid="sideMenu-client-name"]'),
+         applicantPhone: () => cy.get('[data-testid="clientDetailsSummary-phoneNumber"] > .summary-data'),
+         applicantEmail: () => cy.get('[data-testid="clientDetailsSummary-emailAddress"] > .summary-data'),
+         dealStage: () => cy.get('[data-testid="stage-option-2"]'),
+         lenderName:() => cy.get('.summary-name > a')
+
+
+    }
 }
 
 module.exports = new DealsPage()

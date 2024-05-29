@@ -21,7 +21,9 @@ describe('Create a test for creating a loan (deal) application ', () => {
       ProfilePage.elements.boardName().type("Sample Board 1")
       ProfilePage.elements.boardType().click()
       cy.contains("Switch").click()
+      ProfilePage.elements.saveButton().click({force:true})
       
+      cy.visit('/myprofile/boards/')
 
       
     });

@@ -1,0 +1,10 @@
+{
+    "dealName": ["Sample 001", "Sample 002", "Sample 003"],
+    "brokerName":["Cara Mooney", "Ernest Morris", "Johan Horn"],
+    "applicantFirstName":["Chris", "Mark", "John"],  
+    "applicantLastName":["Evans", "Hemsworth", "Pratt"],
+    "email":["test+auto007@brokerengine.com.au", "test+auto007@brokerengine.com.au", "test+auto007@brokerengine.com.au"],
+    "mobile":["412345678", "412345444", "412343254"],
+    "stage":["1 Oustanding Supporting Documents", "2 Prepare for Submission", "3 App Docs Sent to Client for Signing"],
+    "lender":["Carlson-Burgess", "Kim Ltd", "Powell Group"]
+  }
