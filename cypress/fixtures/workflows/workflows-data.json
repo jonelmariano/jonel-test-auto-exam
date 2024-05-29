@@ -1,0 +1,7 @@
+{
+    "workflowName": ["Workflow Test 01", "Workflow Test 02", "Workflow Test 03"],
+    "stage":["1 Oustanding Supporting Documents", "2 Prepare for Submission", "3 App Docs Sent to Client for Signing"],
+    "stepType":["Task", "Email","Delay"],
+    "waitForDays":["5", "10", "15"],  
+    "days":["Business Days", "Calendar Days"]
+}

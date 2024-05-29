@@ -9,7 +9,7 @@ class ProfilePage{
         newBoardButton:() => cy.get('a[href="/my-profile/boards/new/"]'),
         boardType:() => cy.get('input[id="be_loan_board.loanboard.boardType"]'),
         workflowNameTextBox:() => cy.get('input[id="be_workflows.customworkflow.name"]'),
-        selectStageComboBox:() => cy.get('#rc_select_1'),
+        selectStageComboBox:() => cy.get('[data-testid="test-workflow-stage"] > .ant-select-selector'),
         stageList:() => cy.get('div[class="ant-select-item-option-content"]'),
         addStepButton:() => cy.get('[data-testid="workflowAddNodeButton-button"] > :nth-child(2)'),
         //stepList:() => cy.get('li[class="ant-dropdown-menu-item.ant-dropdown-menu-item-only-child"]')
@@ -17,8 +17,10 @@ class ProfilePage{
         days: () => cy.get('.ant-input-group-addon > .ant-select > .ant-select-selector > .ant-select-selection-item'),
         saveButton: () => cy.get('button[type="submit"]').contains("Save"),
         boardName: () => cy.get('input[id="be_loan_board.loanboard.name"]'),
-
-        publishWorkflowButton: () => cy.get('button[role="switch"]')
+        workflowStatusSpan: () => cy.contains("Workflow saved"),
+        publishWorkflowButton: () => cy.get('button[role="switch"]'),
+        publishWorkflowSpan:() => cy.contains("Workflow published"),
+        
     }
 }    
 module.exports = new ProfilePage()

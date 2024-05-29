@@ -2,14 +2,12 @@ const BasePage = require("../pages/BasePage.js")
 const LoginPage = require ("../pages/login/LoginPage.js")
 const ProfilePage = require ("../pages/user-profile/workflow/ProfilePage.js")
 
+var loginDetails = require('../fixtures/login-details/login-details.json')
 
 describe('Create a test for creating a loan (deal) application ', () => {
-    const email = 'test+auto7@brokerengine.com.au'
-    const password = 't^WSbPgE1ud506Gz'
-  
     before(() => {
       cy.visit('/')
-      cy.login(email, password);
+      cy.login(loginDetails.email, loginDetails.password);
     });
   
     it('visits the boards/deals page creates a new deal and validate', () => {
