@@ -20,6 +20,8 @@ class ProfilePage{
         workflowStatusSpan: () => cy.contains("Workflow saved"),
         publishWorkflowButton: () => cy.get('button[role="switch"]'),
         publishWorkflowSpan:() => cy.contains("Workflow published"),
+        boardStatusSpan: () => cy.contains("Board created"),
+        boardBackButton: () => cy.get('._backBtn_y84ky_25')
         
     }
 }    

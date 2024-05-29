@@ -12,5 +12,8 @@
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.5",
     "cypress": "^13.10.0"
+  },
+  "dependencies": {
+    "cypress-real-events": "^1.12.0"
   }
 }

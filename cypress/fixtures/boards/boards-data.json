@@ -1,0 +1,4 @@
+{
+    "boardName": ["Board 001", "Board 002", "Board 003"],
+    "boardType":["Switch", "Construction", "Maintenance"]
+}
