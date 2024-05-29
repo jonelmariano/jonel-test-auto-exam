@@ -4,12 +4,17 @@ class DealsPage {
 
     newDeal = {
 
-        dealNameTextBox: () => cy.get('input[name="name"]'),
-        brokerComboBox: () => cy.get('span.ant-select-arrow').eq(0),
-        applicantComboBox: () => cy.get('span.ant-select-arrow').eq(1),
+        dealNameTextBox: () => cy.get('input[id="newLoanApplication.name"]'),
+        brokerComboBox: () => cy.get('span.ant-select-selection-item').eq(0),
+        brokerList: () =>cy.get('div[id="newLoanApplication.brokerId_list"]'),
+        applicantComboBox: () => cy.get('span.ant-select-selection-search').eq(1),
         addNewApplicant: () => cy.contains("Add New Applicant"),
-        stageComboBox: () => cy.get('span.ant-select-arrow').eq(2),
-        lenderComboBox: () => cy.get('span.ant-select-arrow').eq(3),
+        stageComboBox: () => cy.get('input[class="ant-select-selection-search-input"]').eq(3),
+        list:() => cy.get('div[class="ant-select-item-option-content"]'),
+        lenderComboBox: () => cy.get('input[class="ant-select-selection-search-input"]').eq(4),
+        assignedTeamComboBox: () => cy.get('input[class="ant-select-selection-search-input"]').eq(5),
+        addDealButton :() => cy.get('button.ant-btn.brokerEngine.ant-btn-primary').contains("Add Deal"),
+        cancelButton :() => cy.get('input[type="button"]').contains("Cancel"),
     }
 
 
@@ -20,7 +25,8 @@ class DealsPage {
           mobileCountryCodeDropdown :() => cy.get('span.ant-select-selection-search'),
           mobileNumberTextBox :() => cy.get('input[name="contact.mobilePhoneNumber"]'),
           cancelButton :() => cy.get('input[type="button"]').contains("Cancel"),
-          addApplicantButton :() => cy.get('input[type="button"]').contains("Add Applicant"),
-
+          addApplicantButton :() => cy.get('button.ant-btn.brokerEngine.ant-btn-primary').contains("Add Applicant"),
     }
 }
+
+module.exports = new DealsPage()

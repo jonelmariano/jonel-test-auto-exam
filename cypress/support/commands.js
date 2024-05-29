@@ -9,8 +9,14 @@
 // ***********************************************
 //
 //
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+const LoginPage = require ("../pages/login/LoginPage.js")
+
+Cypress.Commands.add('login', (email, password) => {
+   LoginPage.elements.loginButton({timeout: 10000}).should('be.visible')
+   LoginPage.elements.emailTextBox().type(email)
+   LoginPage.elements.passwordTextBox().type(password)
+   LoginPage.elements.loginButton().click()
+})
 //
 //
 // -- This is a child command --
