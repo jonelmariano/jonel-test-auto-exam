@@ -29,3 +29,15 @@ Cypress.Commands.add('login', (email, password) => {
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+   // Ignore ResizeObserver loop error
+   if (err.message.includes('ResizeObserver loop completed with undelivered notifications')) {
+     return false
+   }
+ 
+   // Allow other exceptions to be thrown
+   return true
+ })
