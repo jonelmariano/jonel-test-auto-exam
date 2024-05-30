@@ -28,20 +28,20 @@ Cypress.Commands.add('logout', () => {
 })
 
 
-
 Cypress.Commands.add('addNewDeal', (dealName, brokerName, applicantFirstName, applicantLastName, email, mobile, stage, lender) => {
+   BasePage.elements.boardsButton().click()
+   BasePage.elements.dealsButton().click()
+   BasePage.elements.newButton().click()
    DealsPage.newDeal.dealNameTextBox().type(dealName)
    DealsPage.newDeal.brokerComboBox().click()
    DealsPage.newDeal.brokerList().contains(brokerName).click()
    DealsPage.newDeal.applicantComboBox().click()
    DealsPage.newDeal.addNewApplicant().click()
-
    DealsPage.newApplicant.firstNameTextBox().type(applicantFirstName)
    DealsPage.newApplicant.lastNameTextBox().type(applicantLastName)
    DealsPage.newApplicant.emailTextBox().type(email)
    DealsPage.newApplicant.mobileNumberTextBox().type(mobile)
    DealsPage.newApplicant.addApplicantButton().click()
-   
    DealsPage.newDeal.dealNameTextBox({timeout: 10000}).should('be.visible')
    DealsPage.newDeal.stageComboBox().click()
    DealsPage.newDeal.list().contains(stage).click()
