@@ -1,16 +1,6 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
 const BasePage = require("../pages/BasePage.js")
 const LoginPage = require ("../pages/login/LoginPage.js")
+const ProfilePage = require ("../pages/user-profile/workflow/ProfilePage.js")
 const DealsPage = require ("../pages/boards/DealsPage.js")
 
 Cypress.Commands.add('login', (email, password) => {
@@ -51,6 +41,29 @@ Cypress.Commands.add('addNewDeal', (dealName, brokerName, applicantFirstName, ap
 })
 
 
+Cypress.Commands.add('addNewBoard', (boardName, boardType) => {
+   BasePage.elements.userIcon().click()
+   ProfilePage.elements.settingsList().click()
+   ProfilePage.elements.workflowOption().trigger('mouseover')
+   ProfilePage.elements.boardsAndStages().click()
+   ProfilePage.elements.newBoardButton().click()
+   ProfilePage.elements.boardName().type(boardName)
+   ProfilePage.elements.boardType().click()
+   cy.contains(boardType).click()
+   ProfilePage.elements.saveButton().click({force:true})
+   ProfilePage.elements.boardBackButton().click()
+})   
+
+Cypress.Commands.add('reorderBoard', (x,y) => {
+   for(var i=0; i < x; i++){
+     cy.realPress('Tab')
+   }
+   cy.realPress('Space')
+   for(var i=0; i < y; i++){
+     cy.realPress('ArrowUp')
+   }
+   cy.realPress('Space')
+})   
 
 
 

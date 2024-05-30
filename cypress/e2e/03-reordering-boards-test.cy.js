@@ -9,47 +9,32 @@ var boardsData = require('../fixtures/boards/boards-data.json')
 
 describe('Create a test for creating a loan (deal) application ', () => {
     before(() => {
-      cy.visit('/')
       cy.login(loginDetails.email, loginDetails.password);
     });
+
+    after(() => {
+      //cy.logout()
+    })
   
     it('visits the boards/deals page creates a new deal and validate', () => {
-      BasePage.elements.userIcon().click()
-      ProfilePage.elements.settingsList().click()
-      ProfilePage.elements.workflowOption().trigger('mouseover')
-      ProfilePage.elements.boardsAndStages().click()
-      ProfilePage.elements.newBoardButton().click()
-      ProfilePage.elements.boardName().type(boardsData.boardName[0])
-      ProfilePage.elements.boardType().click()
-      cy.contains(boardsData.boardType[0]).click()
-      ProfilePage.elements.saveButton().click({force:true})
-      ProfilePage.elements.boardStatusSpan().should("have.text", "Board created")
-      ProfilePage.elements.boardBackButton().click()
+      cy.addNewBoard(boardsData.boardName[0],boardsData.boardType[0])
+      ProfilePage.elements.boardStatusSpan().should("exist", {timeout:10000})
+      .should("have.text", "Board created")
+      ProfilePage.elements.boardBackButton().click({timeout:5000})
 
-      ProfilePage.elements.boardName().should("have.text")
+      let initialPosition
+        cy.contains(boardsData.boardName[0]).then($el => {
+            initialPosition = $el.position()
+        })
+
+      cy.reorderBoard(boardsData.boardPositions[0], boardsData.boardPositions[3])
+
+      cy.contains(boardsData.boardName[0]).then($el => {
+        const newPosition = $el.position()
+
+      cy.reload()  
+        expect(newPosition).to.not.deep.equal(initialPosition)
+      })
       
-      for(var i=0; i < boardsData.boardPositions[0]; i++){
-        cy.realPress('Tab')
-
-      }
-      cy.realPress('Space')
-      for(var i=0; i < boardsData.boardPositions[3]; i++){
-        cy.realPress('ArrowUp')
-
-      }
-      cy.realPress('Space')
-      
-      
-
-
-      
-
-      
-    });
-
-
-    it('', () => {
-    
-        
     })
-  });
+  })
