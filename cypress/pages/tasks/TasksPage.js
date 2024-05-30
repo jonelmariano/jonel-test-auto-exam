@@ -6,7 +6,7 @@ class TasksPage{
     assigneeButton: () => cy.get(':nth-child(5) > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > ._container_f72l3_19 > .ant-btn > span'),
     priority: () => cy.get ('span._priority_1gzj0_1'),
     dueDate: () => cy.get('.ant-form-item-control-input-content > .ant-btn > span'),
-    dueDate2 :() => cy.get('input[name="date"]'),
+    dueDate2 :() => cy.get('svg[data-icon="right"]'),
     dateTextBox: () => cy.get('.ant-form-item-control-input-content > .ant-input-affix-wrapper > .ant-input'),
     saveDate:() => cy.get('button[type="button"]').contains("Save"),
     description:() => cy.get(':nth-child(9) > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > div > .ant-btn > span'),
