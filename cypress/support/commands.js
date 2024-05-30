@@ -9,14 +9,60 @@
 // ***********************************************
 //
 //
+const BasePage = require("../pages/BasePage.js")
 const LoginPage = require ("../pages/login/LoginPage.js")
+const DealsPage = require ("../pages/boards/DealsPage.js")
 
 Cypress.Commands.add('login', (email, password) => {
+   cy.visit('/')
    LoginPage.elements.loginButton({timeout: 10000}).should('be.visible')
    LoginPage.elements.emailTextBox().type(email)
    LoginPage.elements.passwordTextBox().type(password)
    LoginPage.elements.loginButton().click()
 })
+
+Cypress.Commands.add('logout', () => {
+   cy.visit('/')
+   BasePage.elements.logoutIcon().click()
+   BasePage.elements.logoutButton().click()
+})
+
+
+
+Cypress.Commands.add('addNewDeal', (dealName, brokerName, applicantFirstName, applicantLastName, email, mobile, stage, lender) => {
+   DealsPage.newDeal.dealNameTextBox().type(dealName)
+   DealsPage.newDeal.brokerComboBox().click()
+   DealsPage.newDeal.brokerList().contains(brokerName).click()
+   DealsPage.newDeal.applicantComboBox().click()
+   DealsPage.newDeal.addNewApplicant().click()
+
+   DealsPage.newApplicant.firstNameTextBox().type(applicantFirstName)
+   DealsPage.newApplicant.lastNameTextBox().type(applicantLastName)
+   DealsPage.newApplicant.emailTextBox().type(email)
+   DealsPage.newApplicant.mobileNumberTextBox().type(mobile)
+   DealsPage.newApplicant.addApplicantButton().click()
+   
+   DealsPage.newDeal.dealNameTextBox({timeout: 10000}).should('be.visible')
+   DealsPage.newDeal.stageComboBox().click()
+   DealsPage.newDeal.list().contains(stage).click()
+   DealsPage.newDeal.lenderComboBox().click()
+   DealsPage.newDeal.list().contains(lender).click()
+   DealsPage.newDeal.addDealButton().click()
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 //
 // -- This is a child command --
@@ -87,3 +133,11 @@ Cypress.on('uncaught:exception', (err, runnable) => {
                });
        });
 });
+
+
+Cypress.Commands.add('deleteCard', () => {
+   DealsPage.dealSettings.cardSettings().click(),
+   DealsPage.dealSettings.deleteCard().click(),
+   DealsPage.dealSettings.deleteButton().click({force:true})
+});
+

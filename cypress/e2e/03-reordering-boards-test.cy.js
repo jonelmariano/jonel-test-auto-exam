@@ -5,7 +5,7 @@ const ProfilePage = require ("../pages/user-profile/workflow/ProfilePage.js")
 var loginDetails = require('../fixtures/login-details/login-details.json')
 var boardsData = require('../fixtures/boards/boards-data.json')
 
-const desiredElementSelector = '.ant-card-body > :nth-child(1) > :nth-child(1)'
+
 
 describe('Create a test for creating a loan (deal) application ', () => {
     before(() => {
@@ -25,34 +25,29 @@ describe('Create a test for creating a loan (deal) application ', () => {
       ProfilePage.elements.saveButton().click({force:true})
       ProfilePage.elements.boardStatusSpan().should("have.text", "Board created")
       ProfilePage.elements.boardBackButton().click()
-      //cy.contains(boardsData.boardName[0]).click()
-      //cy.get('.ant-card-body > :nth-child(1) > :nth-child(1)').dragAndDrop('.ant-card-body > :nth-child(1) > :nth-child(1)','.ant-card-body > :nth-child(1) > :nth-child(5)')
+
+      ProfilePage.elements.boardName().should("have.text")
       
-      const checkIfFocused = () => {
-        return cy.focused().then($el => {
-          return $el.is(desiredElementSelector);
-        });
-      };
+      for(var i=0; i < boardsData.boardPositions[0]; i++){
+        cy.realPress('Tab')
+
+      }
+      cy.realPress('Space')
+      for(var i=0; i < boardsData.boardPositions[3]; i++){
+        cy.realPress('ArrowUp')
+
+      }
+      cy.realPress('Space')
       
-      const tabUntilFocused = () => {
-        checkIfFocused().then(isFocused => {
-          if (!isFocused) {
-            // Press tab key
-            cy.get('body').tab();
-            // Call the function recursively
-            tabUntilFocused();
-          } else {
-            // Log success message
-            cy.log('Desired element is focused');
-          }
-        })
-      }    
+      
 
 
       
 
       
     });
+
+
     it('', () => {
     
         

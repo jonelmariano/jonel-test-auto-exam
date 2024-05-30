@@ -7,18 +7,14 @@ var dealsData = require('../fixtures/deals/deals-data.json')
 
 describe('Create a test for creating a loan (deal) application ', () => {
     before(() => {
-      cy.visit('/')
-      cy.login(loginDetails.email, loginDetails.password);
+      cy.login(loginDetails.email, loginDetails.password)
     });
 
     after(() => {
-      // cy.get('[data-testid="settings-menu"]').click()
-      // cy.contains("Delete Card").click()
-      // cy.contains("Delete").click({force:true})
-      //cy.logout()
+      cy.logout()
     })
   
-    it('Test for creating a lon(deal) application', function() {
+    it('Test for creating a loan(deal) application', function() {
        BasePage.elements.boardsButton().click()
        BasePage.elements.dealsButton().click()
        BasePage.elements.newButton().click()
@@ -51,15 +47,6 @@ describe('Create a test for creating a loan (deal) application ', () => {
        DealsPage.createdDeal.applicantEmail().should("have.text", dealsData.email[0])
        DealsPage.createdDeal.dealStage().should("contain.text", dealsData.stage[1])
        DealsPage.createdDeal.lenderName().should("have.text", dealsData.lender[2])
-
-       cy.get('[data-testid="settings-menu"]').click()
-       cy.contains("Delete Card").click()
-       cy.contains("Delete").click({force:true})
-       //cy.logout na lang siguro sa after all mo ilagay.
-
-      
+       cy.deleteCard()
     });
-    it('', function() { 
-     
-    })
   });

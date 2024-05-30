@@ -37,8 +37,12 @@ class DealsPage {
          applicantEmail: () => cy.get('[data-testid="clientDetailsSummary-emailAddress"] > .summary-data'),
          dealStage: () => cy.get('[data-testid="stage-option-2"]'),
          lenderName:() => cy.get('.summary-name > a')
+    }
 
-
+    dealSettings = {
+        cardSettings: () => cy.get('[data-testid="settings-menu"]'),
+        deleteCard: () => cy.contains("Delete Card"),
+        deleteButton: () => cy.contains("Delete")
     }
 }
 
