@@ -20,7 +20,9 @@ describe('Create a test for creating a loan (deal) application ', () => {
 
        BasePage.elements.statusSpan().should("exist", {timeout:10000})
        .should("have.text", "New Deal created")
-       DealsPage.createdDeal.dealNameTitle().should("be.visible","contain.text", dealsData.dealName[0])
+       cy.wait(10000)
+       DealsPage.createdDeal.dealNameTitle().should("be.visible", {timeout:10000})
+       .should("contain.text", dealsData.dealName[0])
        DealsPage.createdDeal.brokerTitle().should("have.text", dealsData.brokerName[0])
        DealsPage.createdDeal.applicantName().should("have.text", dealsData.applicantFirstName[0] +" "+dealsData.applicantLastName[1]+" ")
        DealsPage.createdDeal.applicantPhone().should("have.text", "+61 "+dealsData.mobile[0])

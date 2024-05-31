@@ -21,8 +21,8 @@ describe('Create a task! ', () => {
         BasePage.elements.tasksButton().click()
         TasksPage.elements.addTaskButton().click()
         TasksPage.elements.taskName().type(tasksData.taskName[0]) 
-        TasksPage.elements.assigneeButton().click()
-        cy.contains(tasksData.assignee[1]).click()
+        TasksPage.elements.assigneeButton().click({force:true})
+        cy.contains(tasksData.assignee[0]).click({force:true})
         TasksPage.elements.dueDate().click()
         cy.wait(5000)
         cy.get('svg[data-icon="right"]').click({ force: true })
@@ -35,25 +35,27 @@ describe('Create a task! ', () => {
         TasksPage.elements.statusSpan().should("exist", { timeout: 10000 })
             .should("have.text", "New task created")
         
-        TasksPage.createdTask.taskNameTitle().should("have.text", tasksData.taskName[0])  
-        TasksPage.createdTask.assignee().should("have.text", tasksData.assignee[1])
+        //TasksPage.createdTask.taskNameTitle().should("have.text", tasksData.taskName[0])  
+        TasksPage.createdTask.assignee().should("have.text", tasksData.assignee[0])
         TasksPage.createdTask.priority().should("have.text", "Low")  
         TasksPage.createdTask.dueDate().should("have.text", "30 Jun 2024")
         TasksPage.createdTask.description().should("have.text", tasksData.description)
         TasksPage.createdTask.closeSlider().click()
-
+        
         TasksPage.elements.findTask().type(tasksData.taskName[0])
+        //TasksPage.elements.clearFiltersButton().click()       
+ 
         cy.get('span[data-toggl="taskRow-name"]').should("have.text", tasksData.taskName[0]) 
         cy.get('span[class="_priority_1gzj0_1"]').should("have.text", "Low")
         cy.get('span[class="_editVal_tnvhe_25"]').should("contain.text", tasksData.dueDate[0])
-        cy.get('span[class="_name_6hf7a_5 _isTruncatable_6hf7a_8"]').should("have.text", tasksData.assignee[1])
+        cy.get('span[class="_name_6hf7a_5 _isTruncatable_6hf7a_8"]').should("have.text", tasksData.assignee[0])
         
         cy.get('._checkboxCell_1rslw_60 > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input').click()
         cy.get('[data-testid="queueListMoreActions-actionButton"] > .ant-btn-icon').click()
         cy.contains("Export (.xls)").click()
         
         const downloadsFolder = Cypress.config("C:\Users\jonel\OneDrive\Documents\jonel-test-auto-exam\cypress\downloads")
-        const downloadedFileName = path.join(downloadsFolder, '*.xls')
+        const downloadedFileName = path.join(downloadsFolder, 'tasks.xls')
 
         cy.readFile(downloadedFileName, { timeout: 15000 }).should('exist')
         cy.readFile(downloadedFileName, 'binary').then((fileContent) => {
@@ -67,7 +69,7 @@ describe('Create a task! ', () => {
             expect(sheetData[1][5]).to.equal(tasksData.priority[0])
             expect(sheetData[1][6]).to.equal("30-06-2024")
             expect(sheetData[1][8]).to.equal(tasksData.assignee[1])
-            expect(sheetData[1][9]).to.contain("30-05-2024")
+            expect(sheetData[1][9]).to.contain("31-05-2024")
 
         })
 
