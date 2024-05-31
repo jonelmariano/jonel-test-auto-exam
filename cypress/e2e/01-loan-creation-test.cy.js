@@ -15,13 +15,13 @@ describe('Create a test for creating a loan (deal) application ', () => {
     })
   
     it('Creates, Validates and Delete the created loan', function() {
-      cy.addNewDeal(dealsData.dealName[0], dealsData.brokerName[1], dealsData.applicantFirstName[0], dealsData.applicantLastName[1], 
+      cy.addNewDeal(dealsData.dealName[0], dealsData.brokerName[0], dealsData.applicantFirstName[0], dealsData.applicantLastName[1], 
         dealsData.email[0], dealsData.mobile[0], dealsData.stage[1], dealsData.lender[2])
 
        BasePage.elements.statusSpan().should("exist", {timeout:10000})
        .should("have.text", "New Deal created")
        DealsPage.createdDeal.dealNameTitle().should("be.visible","contain.text", dealsData.dealName[0])
-       DealsPage.createdDeal.brokerTitle().should("have.text", dealsData.brokerName[1])
+       DealsPage.createdDeal.brokerTitle().should("have.text", dealsData.brokerName[0])
        DealsPage.createdDeal.applicantName().should("have.text", dealsData.applicantFirstName[0] +" "+dealsData.applicantLastName[1]+" ")
        DealsPage.createdDeal.applicantPhone().should("have.text", "+61 "+dealsData.mobile[0])
        DealsPage.createdDeal.applicantEmail().should("have.text", dealsData.email[0])
