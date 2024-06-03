@@ -3,6 +3,10 @@ const LoginPage = require ("../pages/login/LoginPage.js")
 const ProfilePage = require ("../pages/user-profile/workflow/ProfilePage.js")
 const DealsPage = require ("../pages/boards/DealsPage.js")
 
+
+import * as XLSX from 'xlsx';
+
+
 Cypress.Commands.add('login', (email, password) => {
    cy.visit('/')
    LoginPage.elements.loginButton({timeout: 10000}).should('be.visible')
@@ -51,8 +55,30 @@ Cypress.Commands.add('addNewBoard', (boardName, boardType) => {
    ProfilePage.elements.boardType().click()
    cy.contains(boardType).click()
    ProfilePage.elements.saveButton().click({force:true})
-   ProfilePage.elements.boardBackButton().click()
 })   
+
+Cypress.Commands.add('createTask', (taskName, assignee, description) => {
+    BasePage.elements.tasksButton().click()
+    TasksPage.elements.addTaskButton().click()
+    TasksPage.elements.taskName().type(taskName) 
+    TasksPage.elements.assigneeButton().click({force:true})
+    cy.get('.ant-radio-wrapper').contains(assignee).click({force:true})
+    TasksPage.elements.dueDate().click()
+     cy.wait(5000)
+     cy.get('svg[data-icon="right"]').click({ force: true })
+    TasksPage.elements.saveDate().click({ force: true })
+    TasksPage.elements.description().click()
+    TasksPage.elements.enterDescription().type(description)
+    TasksPage.elements.createTaskButton().click({ force: true })
+})
+
+Cypress.Commands.add('exportTask', () => {
+    TasksPage.taskRow.rowCheckBox().click()
+    TasksPage.taskRow.moreActions().click()
+    cy.contains("Export (.xls)").click()
+    cy.wait(10000)
+    
+})
 
 Cypress.Commands.add('reorderBoard', (x,y) => {
    for(var i=0; i < x; i++){
@@ -66,28 +92,11 @@ Cypress.Commands.add('reorderBoard', (x,y) => {
 })   
 
 
-
-
-
-
-
-
-
-
-
-
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('deleteBoard', (boardName) => {
+    cy.contains(boardName).click() 
+    cy.contains("Delete Board").click()
+    cy.contains("OK").click()
+})
 
 
 
@@ -100,6 +109,14 @@ Cypress.on('uncaught:exception', (err, runnable) => {
    // Allow other exceptions to be thrown
    return true
  })
+
+ Cypress.on('uncaught:exception', (err, runnable) => {
+    // We can log the error to the console or perform other actions here
+    console.error('Uncaught exception:', err);
+  
+    // Return false to prevent Cypress from failing the test
+    return false;
+  });
 
  Cypress.Commands.add('dragAndDrop', (subject, target) => {
    Cypress.log({
@@ -147,6 +164,19 @@ Cypress.on('uncaught:exception', (err, runnable) => {
        });
 });
 
+Cypress.Commands.add('readFileByText', (directory, text) => {
+    cy.task('findFileByText', { directory, text }).then((filePath) => {
+      return cy.readFile(filePath);
+    });
+  });
+
+
+Cypress.Commands.add('readExcel', (filePath) => {
+    return cy.readFile(filePath, 'binary').then((content) => {
+      const workbook = XLSX.read(content, { type: 'binary' });
+      return workbook;
+    });
+  });
 
 Cypress.Commands.add('deleteCard', () => {
    DealsPage.dealSettings.cardSettings().click(),

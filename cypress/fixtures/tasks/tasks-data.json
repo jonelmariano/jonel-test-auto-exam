@@ -2,6 +2,6 @@
     "taskName": ["Task Name 001", "Task Name 002", "Task Name 003"],
     "assignee":["Cara Mooney", "Stella Kirby", "Johan Horn"],
     "priority": ["isCritical", "isHigh", "isMedium", "isLow"],
-    "dueDate":["30/06/2024", "29/07/2024", "28/08/2024" ],
+    "dueDate":["03/07/2024", "29/07/2024", "28/08/2024" , "03 Jul 2024"],
     "description":"This is a description"
   }

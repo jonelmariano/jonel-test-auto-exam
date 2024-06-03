@@ -8,6 +8,7 @@ class ProfilePage{
         newWorkflowButton:() => cy.get('[data-testid="workflow-create"] > :nth-child(2)'),
         newBoardButton:() => cy.get('a[href="/my-profile/boards/new/"]'),
         boardType:() => cy.get('input[id="be_loan_board.loanboard.boardType"]'),
+        boardsList:() => cy.get('a[data-testid="userProfileBoardsList-boardName"]'),
         workflowNameTextBox:() => cy.get('input[id="be_workflows.customworkflow.name"]'),
         selectStageComboBox:() => cy.get('[data-testid="test-workflow-stage"] > .ant-select-selector'),
         stageList:() => cy.get('div[class="ant-select-item-option-content"]'),
@@ -21,6 +22,7 @@ class ProfilePage{
         publishWorkflowButton: () => cy.get('button[role="switch"]'),
         publishWorkflowSpan:() => cy.contains("Workflow published"),
         boardStatusSpan: () => cy.contains("Board created"),
+        moveStatusSpan: () => cy.contains("Successfully moved board"),
         boardBackButton: () => cy.get('._backBtn_y84ky_25')
         
     }

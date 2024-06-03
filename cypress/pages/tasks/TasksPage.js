@@ -3,7 +3,7 @@ class TasksPage{
     elements = {
     addTaskButton: () =>cy.get('button.ant-btn.brokerEngine.ant-btn-default').eq(1),
     taskName: () => cy.get('[data-testid="queueTaskFormHeader-name"] > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > div > .ant-btn > span'),
-    assigneeButton: () => cy.get(':nth-child(5) > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > ._container_f72l3_19 > .ant-btn > span'),
+    assigneeButton: () => cy.get(':nth-child(5) > .ant-row > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > ._container_f72l3_19 > .ant-btn > span').eq(0),
     priority: () => cy.get ('span._priority_1gzj0_1'),
     dueDate: () => cy.get('.ant-form-item-control-input-content > .ant-btn > span'),
     dueDate2 :() => cy.get('svg[data-icon="right"]'),
@@ -32,7 +32,14 @@ class TasksPage{
    }
 
 
-
+    taskRow ={
+        taskRowName: () => cy.get('span[data-toggl="taskRow-name"]'),
+        priorityRow: () =>cy.get('span[class="_priority_1gzj0_1"]'),
+        dueDateRow: () => cy.get('span[class="_editVal_tnvhe_25"]'),
+        assigneeRow: () => cy.get('span[class="_name_6hf7a_5 _isTruncatable_6hf7a_8"]'),
+        rowCheckBox: () => cy.get('._checkboxCell_1rslw_60 > .ant-checkbox-wrapper > .ant-checkbox > .ant-checkbox-input'),
+        moreActions: () => cy.get('[data-testid="queueListMoreActions-actionButton"] > .ant-btn-icon')
+    }
 
     }
     

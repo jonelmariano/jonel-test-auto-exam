@@ -5,7 +5,7 @@ const DealsPage = require ("../pages/boards/DealsPage.js")
 var loginDetails = require('../fixtures/login-details/login-details.json')
 var dealsData = require('../fixtures/deals/deals-data.json')
 
-describe('Create a test for creating a loan (deal) application ', () => {
+describe('Test for creating a loan(deal) application ', () => {
     before(() => {
       cy.login(loginDetails.email, loginDetails.password)
     });

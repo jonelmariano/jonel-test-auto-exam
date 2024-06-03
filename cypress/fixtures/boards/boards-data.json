@@ -1,5 +1,5 @@
 {
     "boardName": ["Board 001", "Board 002", "Board 003"],
     "boardType":["Switch", "Construction", "Maintenance"],
-    "boardPositions":["10", "8", "6", "4", "2"]
+    "boardPositions":["13", "8", "6", "4", "2"]
 }

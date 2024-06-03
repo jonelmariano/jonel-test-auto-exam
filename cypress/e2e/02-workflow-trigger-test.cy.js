@@ -56,7 +56,7 @@ describe('Create a test for creating a loan (deal) application ', () => {
     //   expect(response.status).to.eq(201);
 
     // })
-
+    //hello
     const authHeader = encodeBasicAuth(loginDetails.email, loginDetails.password)
     cy.request({
       method:'POST', 
